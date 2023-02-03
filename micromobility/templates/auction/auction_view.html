@@ -1,0 +1,26 @@
+{% extends 'auction/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="auction-container">
+    <p>Open auctions:</p>  
+    {% for auction in auctions %}
+    <a href="{% url 'details' pk=auction.pk %}">
+    <div class="wrapper">
+        <div class="image-container" >
+            <img src="/static/E-scooter.svg" alt="icon" width="100" height="100">
+        </div>
+        <div class="description">
+            <ul style="color: black">
+                <li class="item-info">Item: {{ auction.item.capitalize }}</li>
+                <li class="item-info">Starting: {{ auction.initPrice }}€</li>
+                <li class="item-info">Current: {{ auction.get_last_bid }}€</li>
+                <li class="item-info" id='time'>Inertion date: {{ auction.start }}</li>
+                <li class="item-info" id='time'>Auction End: {{ auction.get_ending_time}}</li>
+            </ul>
+        </div>
+    </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

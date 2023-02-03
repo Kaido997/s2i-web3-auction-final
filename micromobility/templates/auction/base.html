@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <title>Micromobility</title>
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <ul class="navcontent">
+                <li id="navicon" style="justify-content: flex-start;"><a href="/"><img src="/static/glow.png" alt="logo" width="90" height="65"></a></li>
+                {% if not user.is_authenticated %}
+                <li class="navitem" id="logger"><a onclick="document.getElementById('modal1').style.display='block'">Login</a></li>
+                <li class="navitem"><a href="/register">Register</a></li>
+                {% else %}
+                <li class="navitem"><a href="{% url 'watchlist' username=user.username %}">Watchlist</a></li>
+                <li class="navitem"><a href="{% url 'profiles' username=user.username %}">Profile</a></li>
+                <li class="navitem"><a href="/logout">Logout</a></li>
+                {% endif %}       
+            </ul>
+        </nav>
+        {% block content %} 
+        {% endblock %}
+        <div class="modal" id='modal1'>
+            <form class="modal-content animate register-form" method="POST">
+              <div class="container"> {% csrf_token %}
+                  <p style="color: black;">Please fill in this form to Login.</p>
+          
+                  {% if messages %}
+                      {% for message in messages %}
+                      <p style="color: rgb(208, 34, 34);" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                      {% endfor %}
+                  {% endif %}
+          
+                <hr>
+                <label for="email"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" id="username" required>
+          
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+          
+                <hr>
+                <button type="submit" class="registerbtn">Login</button>
+              </div>
+              <div class="container signin">
+                <p style="color: black;">Not registered? <a style="color: dodgerblue;" href="/register">Register</a>.</p>
+              </div>
+            </form>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <p class="footer-item">Produced by Alan</p>
+                <p class="footer-item" style="color: dodgerblue;"><a href="https://www.github.com/">About</a></p>
+            </div>
+        </footer>
+    </div>
+    <script>
+
+        var modal = document.getElementById('modal1');
+        window.onclick = function(event1) {
+            if (event1.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        var modal2 = document.getElementById('modal2');
+        window.onclick = function(event2) {
+            if (event2.target == modal2) {
+                modal2.style.display = "none";
+            }
+        }    
+
+        var login_link = document.getElementById('logger');
+        if (window.location.href.indexOf("register") > -1) {
+        login_link.style.display = "none";
+    };
+
+    </script>
+</body>
+</html>

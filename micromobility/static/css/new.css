@@ -1,0 +1,292 @@
+
+
+body {
+    color: #f5f5f7;
+    background: #171E26;
+    transition: color 0.5s, #FE9015 0.5s;
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+    font-weight: 1000;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: fade-in 0.5s ;
+    width: 100%;
+    margin: 0;
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@keyframes fade-in {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.navcontent {
+    color: #171E26;
+    display: flex;
+    justify-content: flex-end;
+    height: 65px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+ul{
+    padding: 0;
+    list-style-type: none;
+}
+nav {
+    background: #FE9015;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: block;
+    z-index: 1;
+    border-radius:20px;
+    box-shadow: #171E26 0px 5px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 10000;
+}
+
+
+.navitem {
+    display: flex;
+    padding: 10px;
+    font-size: 25px;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0.95;
+}
+
+.navitem:hover {
+    transform: translateY(0.5px);
+    opacity: 1;
+}
+
+#navicon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.95;
+    transition-duration: 1s;
+    cursor: pointer;
+    width: fit-content;
+}
+
+
+input, select {
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: block;
+    border: none;
+    background: #e1dfdf;
+    border-radius: 6px;
+}
+
+label{
+  color: #FE9015;
+    font-size: large;
+    font-weight: 1000;
+}
+
+hr {
+    width: 100%;
+}
+
+.register-form, .auction-container {
+    display: flex;
+    margin-top: 85px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 100px;
+    width: 100%;
+}
+
+.registerbtn {
+    background-color: #171E26;
+    color: white;
+    font-size: large;
+    font-family: 'Poiret One', cursive;
+    font-weight: 1000;
+    border: 1px solid #FE9015;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 45px;
+    transition-duration: 0.4s;
+}
+
+.registerbtn:hover{
+    transform: translateY(1px);
+    background-color: #FE9015;
+    color: white;
+}
+
+
+#logger{
+    cursor: pointer;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+  /* Modal Content/Box */
+.modal-content {
+    background-color: white;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: fit-content; /* Could be more or less, depending on screen size */
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+  /* The Close Button (x) */
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+  
+  .auction-content{
+    background-color: #70B2AD;
+    color: #000;
+    padding: 20px;
+    border-radius: 20px ;
+  }
+
+
+  .wrapper {
+    background-color: #70B2AD;
+    display: inline-flex;
+    border-radius: 18px;
+    padding: 25px;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+  }
+
+  .wrapper:hover {
+    transform: translateY(-2px);
+  
+  }
+
+  .image-container {
+    color: #171E26;
+  }
+  .description {
+    padding: 0;
+  }
+  
+  .item-info {
+    font-size: medium;
+    padding: 5px;
+  }
+
+  .button-form {
+    display: flex;
+  }
+
+  .watchlist-container {
+    color: rgb(0, 0, 0);
+    background-color: #70B2AD;
+    display: flex;
+    width: auto;
+    padding: 20px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .watchlist-item {
+    display: flex;
+    width: auto;
+    height: fit-content;
+
+  }
+  
+  hr {
+    height: 1px;
+    background-color: #FE9015;
+  }
+
+  
+.footer {
+  background: #D8CF8E;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid black;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px ;
+}
+
+.footer-container {
+  display: flex;
+  color: #171E26;
+  font-size: small;
+  font-weight: 5px;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auction-info {
+  padding-left: 20px;
+}

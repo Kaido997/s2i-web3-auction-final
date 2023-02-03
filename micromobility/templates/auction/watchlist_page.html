@@ -1,0 +1,25 @@
+{% extends 'auction/base.html' %} {% block content %}
+<div class="auction-container">
+  <p style="font-size: xx-large;">Your watchlist</p>
+</div>
+{% if watchcounter == 0 %}
+<p style="display: flex; justify-content: center;">You are not watching anything 😟</p>
+{% else %}
+{%for watch in watched %}
+<div class="watchlist-container"> 
+    <div class="watchlist-item" style="width: 350px;">
+      {{watch.item.upper}}
+    </div>
+    <div class="watchlist-item">
+        <a style="color: dodgerblue;" href="{% url 'details' pk=watch.pk %}">Auction Id: {{watch.pk}}</a>
+    </div>
+    <div>
+        <form action="{% url 'delete' pk=watch.pk%}" method="POST">
+            {% csrf_token %}
+            <span><button class="registerbtn" type="submit">&times;</button></span>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{%endblock%}

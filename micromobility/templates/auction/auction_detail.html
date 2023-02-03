@@ -1,0 +1,51 @@
+{% extends 'auction/base.html' %}
+
+{% block content %}
+
+<div class="auction-container animate">
+    <div class="auction-content">
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: rgb(208, 34, 34);" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <img src="/static/E-scooter.svg" alt="icon" height="300" width="300">
+        </div>
+        <div class="description ">
+            <p>Ending: {{ auction.get_ending_time }}</p>
+            <p>{{ auction.item.capitalize }}</p>
+            <p>Auction ID: {{ auction.auctionId }}</p>
+            <p> {{ auction.description }} </p>
+            <p>Starting price: {{ auction.initPrice }}€</p>
+            <p>Last proposal: {{ auction.get_last_bid }}€</p>
+            
+            <div>
+                <form class="button-form" action="{% url 'add' pk=auction.pk%}" method="POST">
+                    {% csrf_token %}
+                <button type="submit" class="registerbtn" style="margin-right: 10px;">⭐ Add to Watchlist</button> <button type="button" onclick="document.getElementById('modal2').style.display='block'" class="registerbtn">Make Proposal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id='modal2'>
+    <form class="modal-content animate register-form" method="POST">
+      <div class="container"> {% csrf_token %}
+          <p style="color: black;">Please fill in this form to make your proposal.</p>  
+        <hr>  
+        <p>
+            <label for="id_bid">Make your proposal:</label>
+            <br>
+            <input type="number" name="bid" value="{{ lastProp }}" required id="id_bid">
+        </p>
+        <p>
+            <small style="color: black;">* Proposal must be higher then last price</small>
+        </p>
+        <hr>
+        <button type="submit" class="registerbtn">Submit</button>
+      </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'auction/base.html' %}
+
+{% block content %}
+<form class="register-form" method="POST">
+  <div class="container">{% csrf_token %}
+    <p>Please fill in this form to make a new auction.</p>
+    <hr>
+    {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+        <p><small style="color: black">* {{ field.help_text }}</small></p>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+    {% endfor %}
+    <button class="registerbtn" type="submit">Save</button>
+  </div>
+</form>
+{% endblock %}

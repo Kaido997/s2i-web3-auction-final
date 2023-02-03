@@ -1,0 +1,46 @@
+{% extends 'auction/base.html' %}
+
+{% block content %}
+<div class="auction-container">
+    <div>
+        <p style="font-size: xx-large; ">Hello, {{ profile.capitalize }} welcome back.</p>
+    </div>
+    {% if user.is_staff %}
+    <div>
+        <a href="/auctionNew/" style="color: dodgerblue;">New auction</a>
+    </div>
+    {% endif %}
+    <hr>
+    <p>Your winned auctions</p>
+    {% if winnedcounter == 0 %}
+        <p>No winned auction already 😟</p>
+    {% else %}
+    {%for win in page_obj %}
+    <ul style="display:inline-flex;">
+        <li class="auction-info">Id: {{win.auctionId}}</li>
+        <li class="auction-info">Item: {{win.item.capitalize}}</li>
+        <li class="auction-info">Final Price: {{win.finalPrice}}</li>
+        <li class="auction-info">Receipt Tx: <a style="color: dodgerblue;" href="https://goerli.etherscan.io/tx/{{win.ethTx}}">{{win.truncatetx}}</a></li>  
+    </ul>
+    {% endfor %}
+    {%endif%}
+</div>
+<div class="pagination auction-container">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a style="color: dodgerblue" href="?page=1">&laquo; first</a>
+            <a style="color: dodgerblue" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a style="color: dodgerblue" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a style="color: dodgerblue" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{%endblock%}
