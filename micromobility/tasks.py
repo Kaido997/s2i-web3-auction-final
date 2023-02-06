@@ -5,15 +5,14 @@ from .tools import RedisServer, ethTestnet, Timer_settings
 from .models import Auction
 
 
-
 @app.shared_task
 def auction_end(auction_pk):
     redis = RedisServer()
     winner = redis.read(key=auction_pk)
     model = Auction.objects.filter(pk=auction_pk)[0]
-    eth = ethTestnet(model.dataSerializer())
+
     if winner == None:
-        model.update(status="closed")
+        model.update(status="closed", ethTx="no winner")
         return "no winner"
     else:
         model.update(
@@ -23,16 +22,16 @@ def auction_end(auction_pk):
             end=timezone.now(),
             ethTx="PENDING",
         )
-        try:        
+        eth = ethTestnet(model.dataSerializer())
+        try:
             tx = eth.saveOnChain()
             model.update(ethTx=tx)
         except:
             check_after_error = eth.checkTransaction()
-            if check_after_error == 'Failure with the on chain save':
+            if check_after_error == "Failure with the on chain save":
                 retry = eth.saveOnChain()
                 model.update(ethTx=retry)
             else:
-
                 model.update(ethTx=check_after_error)
         RedisServer.delete(auction_pk)
         return True

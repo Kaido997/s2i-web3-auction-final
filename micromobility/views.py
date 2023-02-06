@@ -11,6 +11,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .tasks import schedule_auction_end
 from django.core.paginator import Paginator
 
+
 def homepageView(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -22,7 +23,7 @@ def homepageView(request):
         else:
             return redirect("homepage")
     else:
-        allAuctions = Auction.objects.filter(status='o') 
+        allAuctions = Auction.objects.filter(status="o")
 
         return render(request, "auction/auction_view.html", {"auctions": allAuctions})
 
@@ -53,7 +54,7 @@ def auctionDetailView(request, pk):
     lastProp = last_Prop(auctionId=pk)
     if request.method == "POST":
         bid = int(request.POST["bid"])
-        if bid >= lastProp + 1 and auction.status == 'o':
+        if bid >= lastProp + 1 and auction.status == "o":
             s.write(pk, request.user.username, bid)
             return redirect("details", pk=pk)
         else:
@@ -63,9 +64,7 @@ def auctionDetailView(request, pk):
                 )
                 return redirect("details", pk=pk)
             else:
-                messages.error(
-                    request, message="Auction is closed"
-                )
+                messages.error(request, message="Auction is closed")
                 return redirect("details", pk=pk)
 
     return render(
@@ -81,7 +80,7 @@ def profileView(request, username):
     currentProfile = Profile.objects.filter(user=request.user)[0]
     winnedauctions = Auction.objects.filter(winner=currentProfile)
     paginator = Paginator(winnedauctions, 5)
-    pageNum = request.GET.get('page')
+    pageNum = request.GET.get("page")
     pageObj = paginator.get_page(pageNum)
     winnedcounter = len(winnedauctions)
     return render(
@@ -126,7 +125,7 @@ def deleteFromWatchList(request, pk):
 @login_required(login_url="/")
 def addInWatchList(request, pk):
     currentProfile = Profile.objects.filter(user=request.user)[0]
-    if Auction.objects.get(pk=pk).status == 'o':
+    if Auction.objects.get(pk=pk).status == "o":
         if not currentProfile.add_delete_from_watchList(auctionId=pk):
             messages.error(request, "Item already in watchlist")
             return redirect("details", pk=pk)
@@ -144,7 +143,7 @@ def auctionNew(request):
         form = NewAuction(request.POST)
         if form.is_valid():
             form.save()
-            last_creation = Auction.objects.latest('pk')
+            last_creation = Auction.objects.latest("pk")
             last_creation.auctionId = last_creation.pk
             last_creation.save()
             schedule_auction_end(last_creation)
@@ -152,4 +151,6 @@ def auctionNew(request):
     else:
         form = NewAuction()
         return render(request, "auction/auctionNew.html", {"form": form})
+
+
 # Create your views here.

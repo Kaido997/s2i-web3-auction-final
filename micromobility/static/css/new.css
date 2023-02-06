@@ -286,7 +286,21 @@ hr {
   flex-direction: column;
   align-items: center;
 }
+.footer-item {
+  margin: 0;
+  padding: 8px;
+}
 
 .auction-info {
   padding-left: 20px;
+}
+
+.title {
+  position: absolute;
+  margin: 0;
+  top: -15px;
+  right: 0;
+  left: 7px;
+  font-size: xx-large;
+  color: white;
 }

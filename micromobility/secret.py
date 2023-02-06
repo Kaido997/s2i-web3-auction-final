@@ -1,3 +1,3 @@
-ADDRESS = "0xD7B966e093E356f8Cd8E3Da6b2Aa62a8A093E736"
-PKEY = "5aa2b66991765c2d60999c028147dd91d273535f5b574593c076da8b6c78929e"
-ROPSTEN = "https://goerli.infura.io/v3/cecd52cfb8614b9ba5b06c12167ce00f"
+ADDRESS = "your wallet address"
+PKEY = "yor private key"
+ROPSTEN = "web3 endpoint"
