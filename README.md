@@ -6,8 +6,8 @@ A Blockchain powered charity auction for micromobility devices.
 [Site link with 2 minute auction time for try](http://35.157.207.149:8000)
 
 Profile:
-username: Admin
-password: adminpassword
+- username: Admin
+- password: adminpassword
 ## Idea 💡
 The idea is to provide a auction site with the win
 report saved on the blockchain. 
