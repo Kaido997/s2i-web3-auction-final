@@ -41,7 +41,7 @@ of the auction and the end actions such as:
     ```js
    python manage.py migrate
    ```
- - Create super user
+ - Create super user only admin can make new auctions
  
    ```js
    python manage.py createsuperuser
