@@ -1,6 +1,7 @@
 # Bidnow 🔨 
 A Blockchain powered charity auction for micromobility devices.
- 
+
+[Presentation link](https://www.canva.com/design/DAFZ0C5fHko/RoesW9ONoY4EHaFwKnIrpw/view?utm_content=DAFZ0C5fHko&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 ## Idea 💡
 The idea is to provide a auction site with the win
 report saved on the blockchain. 
