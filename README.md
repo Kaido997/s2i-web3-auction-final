@@ -46,6 +46,17 @@ of the auction and the end actions such as:
    ```js
    python manage.py createsuperuser
    ```
+ - Create superuser profile
+ 
+    ```js
+   python manage.py shell
+   ```
+   ```py
+   from micromobility.models import Profile
+   from django.contrib.auth.models import User
+   s = User.objects.all()
+   Profile.create(user=s[0])
+   ``` 
  - Launch celery 
  
    ```js
